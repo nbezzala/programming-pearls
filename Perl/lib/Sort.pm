@@ -18,4 +18,25 @@ sub insertion_sort {
 	return $arr;
 }
 
+# Implementation of bit sort for numbers less than 32
+# Because Int in Perl would use a 32 bit integer
+sub bit_sort {
+	my $arr = shift;
+
+	my $bits = 0;
+
+	my @sorted;
+	for my $i ( @$arr ) {
+		my $p = 2 ** ($i - 1);
+		$bits |= $p;
+	}
+
+	for my $i ( 1..32 ) {
+		$p = 2 ** ($i - 1);
+		push @sorted, $i if $bits & $p;
+	}
+
+	return \@sorted;
+}
+
 nitish;
