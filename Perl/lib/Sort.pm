@@ -1,5 +1,12 @@
 package Sort;
 
+=head 
+
+For each item in the array, compare it to all the items after it.
+If the second item is bigger, swap the two items.
+
+=cut
+
 sub insertion_sort {
 	my $arr = shift;
 
@@ -18,8 +25,17 @@ sub insertion_sort {
 	return $arr;
 }
 
-# Implementation of bit sort for numbers less than 32
-# Because Int in Perl would use a 32 bit integer
+=head
+
+Implementation of bit sort for numbers less than 32 with input as an array
+Doing this first because Int in Perl would use a 32 bit integer,
+and we want to solve the simple problem first before attacking the bigger ones
+
+We set $bits to 0. Then we set the correct bits to 1 in $bits.
+
+
+=cut
+
 sub bit_sort {
 	my $arr = shift;
 
