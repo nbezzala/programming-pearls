@@ -1,5 +1,7 @@
 package Sort;
 
+use strict;
+use warnings;
 use Data::Dumper;
 
 =head 
@@ -41,7 +43,7 @@ We set $bits to 0. Then we set the correct bits to 1 in $bits.
 sub bit_sort {
 	my $arr = shift;
 
-	my $bits = 0;
+	my ($bits, $p) = 0;
 
 	my @sorted;
 	for my $i ( @$arr ) {
@@ -70,21 +72,21 @@ sub bit_sort_64 {
     my $arr = shift;
 
 	my @bits = (0, 0);
-	
+	my ($n, $k, $p) = 0;	
 	for my $i ( @$arr ) {
-		my $n = int($i/32);
-		my $k = $i - ($n * 32);
-		my $p = 2 ** ( $k-1 );
+		$n = int($i/32);
+		$k = $i - ($n * 32);
+		$p = 2 ** ( $k-1 );
 		$bits[$n] = $bits[$n] | $p;
 	}
 
-sprintf("%b \n", $bits[0]);
 
-
+	my @sorted;
 	for my $i ( 0 .. 1 ) {
 		for my $j ( 1 .. 32 ) {
-			$p = ($i * 32) + 2**$j;
-			push @sorted, $p if $bits[$i] & ($p - 32*$i);
+			$p = 2**($j-1);
+			my $x = (32*$i)+$j;
+			push @sorted, (32*$i)+$j if $bits[$i] & $p;
 		}	
    	} 
 	

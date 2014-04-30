@@ -58,9 +58,40 @@ is_deeply($sorted, [ 18, 32 ], "Sorted list with 32 in it");
 #$sorted = Sort::array_bit_sort(\@numbers);
 #is_deeply($sorted, [ 33 ], "Sorted list with 33 in it");
 
-my @numbers = (3);
-my $sorted = Sort::bit_sort_64(\@numbers);
+@numbers = (1);
+$sorted = Sort::bit_sort_64(\@numbers);
+is_deeply($sorted, [1], "Sorted single element list");
+
+@numbers = (2);
+$sorted = Sort::bit_sort_64(\@numbers);
+is_deeply($sorted, [2], "Sorted single element list");
+
+@numbers = (3);
+$sorted = Sort::bit_sort_64(\@numbers);
 is_deeply($sorted, [3], "Sorted single element list");
 
+@numbers = ( 31 );
+$sorted = Sort::bit_sort_64(\@numbers);
+is_deeply($sorted, [ 31 ], "Sorted list with 31 in it");
+
+@numbers = ( 32);
+$sorted = Sort::bit_sort_64(\@numbers);
+is_deeply($sorted, [ 32 ], "Sorted list with 32 in it");
+
+@numbers = ( 33, 18 );
+$sorted = Sort::bit_sort_64(\@numbers);
+is_deeply($sorted, [ 18, 33 ], "Sorted list with 32 in it");
+
+@numbers = ( 63 );
+$sorted = Sort::bit_sort_64(\@numbers);
+is_deeply($sorted, [ 63 ], "Sorted list with 63 in it");
+
+@numbers = ( 63, 43, 18, 1, 23, 39 );
+$sorted = Sort::bit_sort_64(\@numbers);
+is_deeply($sorted, [ 1, 18, 23, 39, 43, 63 ], "Sorted list with 6 elements in random order");
+
+@numbers = ( 1 .. 63 );
+$sorted = Sort::bit_sort_64(\@numbers);
+is_deeply($sorted, [ 1 .. 63 ], "Sorted an already sorted list");
 
 done_testing;
