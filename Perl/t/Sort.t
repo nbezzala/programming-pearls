@@ -49,9 +49,18 @@ is_deeply($sorted, [2, 4, 8, 10, 16, 31], "Sorted list with 31 in it");
 $sorted = Sort::bit_sort(\@numbers);
 is_deeply($sorted, [ 18, 32 ], "Sorted list with 32 in it");
 
+# Fix this test, should fail nicely for numbers greater than 32
+#@numbers = ( 33, 18 );
+#$sorted = Sort::bit_sort(\@numbers);
+#is_deeply($sorted, [ 18, 33 ], "Sorted list with 32 in it");
+
 #@numbers = ( 33 );
 #$sorted = Sort::array_bit_sort(\@numbers);
 #is_deeply($sorted, [ 33 ], "Sorted list with 33 in it");
+
+my @numbers = (3);
+my $sorted = Sort::bit_sort_64(\@numbers);
+is_deeply($sorted, [3], "Sorted single element list");
 
 
 done_testing;

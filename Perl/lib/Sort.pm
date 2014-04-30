@@ -1,5 +1,7 @@
 package Sort;
 
+use Data::Dumper;
+
 =head 
 
 For each item in the array, compare it to all the items after it.
@@ -55,4 +57,38 @@ sub bit_sort {
 	return \@sorted;
 }
 
-nitish;
+=head
+
+Implementation of a bit sort for numbers upto 64 with input as an array of positive integers
+
+We create an array of integers to get an array of bits.
+First we need to find out which array element to set the bit for.
+
+=cut
+
+sub bit_sort_64 {
+    my $arr = shift;
+
+	my @bits = (0, 0);
+	
+	for my $i ( @$arr ) {
+		my $n = int($i/32);
+		my $k = $i - ($n * 32);
+		my $p = 2 ** ( $k-1 );
+		$bits[$n] = $bits[$n] | $p;
+	}
+
+sprintf("%b \n", $bits[0]);
+
+
+	for my $i ( 0 .. 1 ) {
+		for my $j ( 1 .. 32 ) {
+			$p = ($i * 32) + 2**$j;
+			push @sorted, $p if $bits[$i] & ($p - 32*$i);
+		}	
+   	} 
+	
+	return \@sorted;
+}
+
+1;
