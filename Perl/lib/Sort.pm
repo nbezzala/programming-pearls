@@ -1,7 +1,6 @@
 package Sort;
 
-use strict;
-use warnings;
+use Modern::Perl 2014;
 use Data::Dumper;
 
 =head 
@@ -65,6 +64,7 @@ Implementation of a bit sort for numbers upto 64 with input as an array of posit
 
 We create an array of integers to get an array of bits.
 First we need to find out which array element to set the bit for.
+Then we translate 1..32 and 33..64 into 0..31 and set the correct bit
 
 =cut
 
@@ -74,19 +74,18 @@ sub bit_sort_64 {
 	my @bits = (0, 0);
 	my ($n, $k, $p) = 0;	
 	for my $i ( @$arr ) {
-		$n = int($i/32);
-		$k = $i - ($n * 32);
-		$p = 2 ** ( $k-1 );
+		$n = int(($i-1)/32);
+		$k = $i - ($n*32) - 1;
+
+		$p = 2 ** ( $k );
 		$bits[$n] = $bits[$n] | $p;
 	}
 
-
 	my @sorted;
 	for my $i ( 0 .. 1 ) {
-		for my $j ( 1 .. 32 ) {
-			$p = 2**($j-1);
-			my $x = (32*$i)+$j;
-			push @sorted, (32*$i)+$j if $bits[$i] & $p;
+		for my $j ( 0 .. 31 ) {
+			$p = 2**($j);
+			push @sorted, (32*$i)+$j+1 if $bits[$i] & $p;
 		}	
    	} 
 	

@@ -80,7 +80,7 @@ is_deeply($sorted, [ 32 ], "Sorted list with 32 in it");
 
 @numbers = ( 33, 18 );
 $sorted = Sort::bit_sort_64(\@numbers);
-is_deeply($sorted, [ 18, 33 ], "Sorted list with 32 in it");
+is_deeply($sorted, [ 18, 33 ], "Sorted list with 33 in it");
 
 @numbers = ( 63 );
 $sorted = Sort::bit_sort_64(\@numbers);
@@ -90,8 +90,8 @@ is_deeply($sorted, [ 63 ], "Sorted list with 63 in it");
 $sorted = Sort::bit_sort_64(\@numbers);
 is_deeply($sorted, [ 1, 18, 23, 39, 43, 63 ], "Sorted list with 6 elements in random order");
 
-@numbers = ( 1 .. 63 );
+@numbers = ( 1 .. 64 );
 $sorted = Sort::bit_sort_64(\@numbers);
-is_deeply($sorted, [ 1 .. 63 ], "Sorted an already sorted list");
+is_deeply($sorted, [ 1 .. 64 ], "Sorted an already sorted list");
 
 done_testing;
