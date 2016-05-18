@@ -3,7 +3,7 @@ use Math::BigInt;
 
 my %hash;
 
-for (my $n = 1; $n <  2**30; $n++) {
+for (my $n = 1; $n <  10_000_000; $n++) {
     $hash{$n} = 1;
 }
 
