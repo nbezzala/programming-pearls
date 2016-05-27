@@ -6,19 +6,20 @@ sub binary_search {
 
 	my $start = 0;
 	my $end = scalar(@$aref);
-	my $mid = $end/2;
+	my $mid = ($start + $end)/2;
 
 	while ( $start < $end ) {
 		if ( $aref->[$mid] == $n ) {
 			return 1;
 		}
+
 		if ( $aref->[$mid] < $n ) {
 			$end = $mid;
-			$mid = $mid/2;
 		} else {
 			$start = $mid;
-			$end = ($end - $start)/2
 		}
+
+        $mid = ($start + $end)/2;
 	}
 	
 	return 0;	
