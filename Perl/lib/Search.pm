@@ -1,25 +1,28 @@
 package Search;
 
+use POSIX;
+
 sub binary_search {
 	my $n = shift;
     my $aref = shift;
 
 	my $start = 0;
-	my $end = scalar(@$aref);
-	my $mid = ($start + $end)/2;
+	my $end = scalar(@$aref) - 1;
 
-	while ( $start < $end ) {
+	while ( $start <= $end ) {
+
+		my $mid = floor(($end + $start)/2);
+
 		if ( $aref->[$mid] == $n ) {
 			return 1;
 		}
 
 		if ( $aref->[$mid] < $n ) {
-			$end = $mid;
+			$end = $mid - 1;
 		} else {
-			$start = $mid;
+			$start = $mid + 1;
 		}
 
-        $mid = ($start + $end)/2;
 	}
 	
 	return 0;	
