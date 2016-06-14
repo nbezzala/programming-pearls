@@ -11,13 +11,13 @@ sub binary_search {
 
 	while ( $start <= $end ) {
 
-		my $mid = floor(($end + $start)/2);
+		my $mid = int(($end + $start)/2);
 
 		if ( $aref->[$mid] == $n ) {
 			return 1;
 		}
 
-		if ( $aref->[$mid] < $n ) {
+		if ( $n < $aref->[$mid] ) {
 			$end = $mid - 1;
 		} else {
 			$start = $mid + 1;
