@@ -9,7 +9,7 @@ my $file = "random.txt";
 open (my $fh, ">", $file) or die "Could not open file for write $!";
 
 for (my $i = 0; $i < 10_000_000; $i++) {
-    if ( rand() % $remaining < $select) {
+    if ( ((rand() * 10_000_000) % $remaining) < $select) {
         print $fh "$i\n";
         $select--;
     }
