@@ -6,7 +6,7 @@ use Data::Dumper;
 =head 
 
 For each item in the array, compare it to all the items after it.
-If the second item is bigger, swap the two items.
+If the second item is smaller, swap the two items.
 
 =cut
 
